@@ -1,0 +1,13 @@
+.profile__add{
+    width: 22px;
+    height: 22px;
+    background-size: cover;
+    background-image: url(../../../images/Vector.svg);
+}
+
+@media screen and (max-width: 768px) {
+    .profile__add{
+      width: 16px;
+      height: 16px;
+    }
+}

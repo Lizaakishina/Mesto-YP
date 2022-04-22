@@ -1,0 +1,24 @@
+.popup{
+    display: none;
+    position: absolute;
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+    max-width: 430px;
+    height: 330px;
+}
+
+@media screen and (max-width: 768px) {
+    .popup{
+      max-width: 282px;
+      height: 358px;
+      margin: 0 auto;
+      top: 87px; left: 0; bottom: 0; right: 0;
+    }
+    .popup_opened{
+        display: block;
+    }
+}
+
+.popup_opened{
+    display: block;
+}
