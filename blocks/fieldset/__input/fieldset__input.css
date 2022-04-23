@@ -1,4 +1,4 @@
-.popup__fieldset__input{
+.fieldset__input{
     width: 358px;
     min-height: 27px;
     margin: 0 auto 30px;
@@ -13,12 +13,12 @@
     line-height: 17px;
 }
 
-.popup__fieldset__input:nth-child(2){
+.fieldset__input:nth-child(2){
     margin: 0 auto;
 }
 
 @media screen and (max-width: 768px) {
-    .popup__fieldset__input{
+    .fieldset__input{
         width: 238px;
         min-height: 27px;
     }
