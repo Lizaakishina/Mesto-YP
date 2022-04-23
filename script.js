@@ -4,25 +4,25 @@ let editbutton = profile.querySelector('.profile__edit');
 let popupopen = document.querySelector('.popup');
 let closebutton = document.querySelector('.popup__close');
 
-let popupdiv = document.querySelector('.popup-div');
-
-let element = document.querySelector('.element');
-let like = element.querySelector('.element__like');
+//let element = document.querySelector('.element');
+//let like = document.querySelector('.element__like');
 function openpopup(){
     popupopen.setAttribute('opened', true);
     popupopen.classList.add('popup_opened');
-    popupdiv.setAttribute('opened');
-    popupdiv.classList.add('popup-div_opened');
 }
 editbutton.addEventListener('click', openpopup);
 
 function closepopup(){
    popupopen.removeAttribute('opened');
    popupopen.classList.remove('popup_opened');
-   popupdiv.removeAttribute('opened');
-   popupdiv.classList.remove('popup-div_opened');
 }
 closebutton.addEventListener('click', closepopup);
+
+/*function likeactive(){
+    like.setAttribute('active', true);
+    like.classList.add('element__like_active');
+}
+like.addEventListener('click', likeactive);*/
 
 // Находим форму в DOM
 let formElement = popup.querySelector('.popup__fieldset');
