@@ -2,7 +2,10 @@
     width: 430px;
     height: 330px;
     margin: 0 auto;
-    top: 110px;left: 0;bottom: 0;right: 0;
+    top: 110px;
+    left: 0;
+    bottom: 0;
+    right: 0;
     position: absolute;
 }
 
@@ -10,6 +13,9 @@
     .popup__container{
         max-width: 282px;
         height: 322px;
-        top: 59px;left: 0;bottom: 0;right: 0;
+        top: 59px;
+        left: 0;
+        bottom: 0;
+        right: 0;
     }
 }

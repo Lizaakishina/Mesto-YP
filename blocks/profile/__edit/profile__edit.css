@@ -1,7 +1,7 @@
 .profile__edit{
     width: 24px;
     height: 24px;
-    margin: 0 0 0 18px;
+    margin: 0 0 9px 18px;
     align-self: end;
 }
 
@@ -13,6 +13,6 @@
     .profile__edit{
         width: 18px;
         height: 18px;
-        margin: 0 0 0 10px;
+        margin: 0 0 7px 10px;
     }
 }
