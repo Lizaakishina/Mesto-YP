@@ -3,9 +3,8 @@
     min-height: 27px;
     margin: 0 auto 30px;
     padding: 0;
-    opacity: 0.2;
     border: none;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;

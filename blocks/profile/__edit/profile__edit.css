@@ -2,6 +2,7 @@
     width: 24px;
     height: 24px;
     margin: 0 0 0 18px;
+    align-self: end;
 }
 
 .profile__edit:hover{

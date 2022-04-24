@@ -9,7 +9,7 @@ function openpopup(){
 function closepopup(){
    popup.classList.remove('popup_opened');
 }
-let formElement = document.querySelector('.popup-fieldset');
+let formElement = document.querySelector('.popup-form');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__description');
 let inputName = document.querySelector('.popup-fieldset__input_name');
