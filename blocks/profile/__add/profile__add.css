@@ -3,6 +3,9 @@
     height: 22px;
     background-size: cover;
     background-image: url(../../../images/Vector.svg);
+    background-color: black;
+    cursor: pointer;
+    border: none;
 }
 
 @media screen and (max-width: 768px) {

@@ -8,8 +8,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
-    cursor: pointer;
 }
 
 .profile__add-border:hover{
