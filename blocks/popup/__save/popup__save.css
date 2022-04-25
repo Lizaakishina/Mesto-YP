@@ -6,7 +6,10 @@
     line-height: 22px;
     text-align: center;
     color: #FFFFFF;
-    margin: 14px auto 0;
+    margin: 0 auto;
+    background-color: black;
+    border: none;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

@@ -8,6 +8,12 @@
     overflow: hidden;
 }
 
+@media screen and (max-width: 915px) {
+  .element{
+    max-width: 282px;
+  }
+}
+
 @media screen and (max-width: 768px) {
     .element{
       max-width: 282px;
