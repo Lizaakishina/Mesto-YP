@@ -1,16 +1,26 @@
 .profile__add{
-    width: 22px;
-    height: 22px;
-    background-size: cover;
+    background-size: 22px 22px;
+    background-repeat: no-repeat;
     background-image: url(../../../images/Vector.svg);
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0);
+    background-position: center;
     cursor: pointer;
-    border: none;
+    border-radius: 2px;
+    border: 2px solid #FFFFFF;
+    height: 50px;
+    width: 150px;
+    padding: 0;
+    align-self: center;
+}
+
+.profile__add:hover{
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 768px) {
     .profile__add{
-      width: 16px;
-      height: 16px;
+      background-size: 16px 16px;
+      width: 282px;
+      margin-top: 36px;
     }
 }

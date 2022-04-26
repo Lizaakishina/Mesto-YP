@@ -1,7 +1,0 @@
-.profile__edit_active{
-    display: none;
-}
-
-.profile__edit_active:hover{
-    display: block;
-}

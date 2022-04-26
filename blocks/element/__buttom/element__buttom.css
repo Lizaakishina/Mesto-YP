@@ -2,6 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 31px 21px;
+    margin-top: 25px;
+    margin-left: 21px;
+    margin-bottom: 31px;
     max-width: 246px;
 }

@@ -1,6 +1,5 @@
 .elements{
     max-width: 880px;
-    min-height: 744px;
     margin: 46px auto 0;
     display: grid;
     grid-template-columns: repeat(3, 282px);
@@ -12,7 +11,6 @@
   .elements{
     margin: 46px auto 0;
     max-width: 584px;
-    min-height: 744px;
     grid-template-columns: repeat(2, 282px);
     grid-template-rows: repeat(3, auto);
     gap: 20px;
@@ -23,7 +21,6 @@
     .elements{
       margin: 36px auto 0;
       max-width: 282px;
-      min-height: 2268px;
       grid-template-columns: 282px;
       grid-template-rows: repeat(6, 361px);
       gap: 20px;

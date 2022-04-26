@@ -5,15 +5,4 @@
     min-height: 100vh;
     margin: 0 auto;
     padding: 0;
-    position: relative;
-}
-
-.page_popup{
-    opacity: 0.5;
-}
-
-@media screen and (max-width: 768px) {
-    .page{
-      position:unset;
-    }
 }

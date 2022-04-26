@@ -11,6 +11,6 @@
     background-image: url(../../../images/LikeHover.svg);
 }
 
-.element__like_active{
+.element__like:active{
     background-image: url(../../../images/LikeActive.svg);
 }
