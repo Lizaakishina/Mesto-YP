@@ -1,6 +1,6 @@
-.popup-fieldset__input{
+.popup-form__fieldset-input{
     width: 358px;
-    margin: 0 auto 30px;
+    margin: 30px auto 0;
     padding: 0 0 13px 0;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
@@ -12,12 +12,8 @@
     color: #000000;
 }
 
-.popup-fieldset__input:nth-child(2){
-    margin: 0 auto;
-}
-
 @media screen and (max-width: 768px) {
-    .popup-fieldset__input{
+    .popup-form__fieldset-input{
         width: 238px;
     }
 }

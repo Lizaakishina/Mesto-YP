@@ -1,5 +1,5 @@
-.popup-fieldset{
-    margin: 54px auto 0;
+.popup-form__fieldset{
+    margin: 24px auto 0;
     border: none;
     padding: 0;
     display: flex;
@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .popup-fieldset{
+    .popup-form__fieldset{
         margin: 0 auto 0;
     }
 }

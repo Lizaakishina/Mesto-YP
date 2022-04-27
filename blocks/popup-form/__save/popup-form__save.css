@@ -1,4 +1,4 @@
-.popup__save{
+.popup-form__save{
     font-family: 'Inter','Arial',sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -18,12 +18,12 @@
     padding-bottom: 14px;
 }
 
-.popup__save:hover{
+.popup-form__save:hover{
     opacity: .8;
 }
 
 @media screen and (max-width: 768px) {
-    .popup__save{
+    .popup-form__save{
         font-size: 14px;
         line-height: 17px;
         text-align: center;

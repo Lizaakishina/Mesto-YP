@@ -16,7 +16,7 @@
             <div class="profile__intro">
                 <div class="profile__avatar"></div>
                 <div class="profile__text">
-                    <div class="profile-nameedit">
+                    <div class="profile__nameedit">
                       <h1 class="profile__name">Жак-Ив Кусто</h1>
                       <button class="profile__edit" type="button"></button>
                     </div>
@@ -81,13 +81,14 @@
             <button class="popup__close" type="reset"></button>
             <div class="popup__div">
                 <h2 class="popup__text">Редактировать профиль</h2>
-                <form class="popup-form">
-                  <label class="popup-form__label">Name:form</label>
-                  <fieldset class="popup-form__fieldset popup-fieldset">
-                    <input class="popup-fieldset__input popup-fieldset__input_type_name" name="Имя" type="text">
-                    <input class="popup-fieldset__input popup-fieldset__input_type_job" name="Описание" type="text">
+                <form class="popup-form" action="form" method="post">
+                  <fieldset class="popup-form__fieldset">
+                    <input id="name" class="popup-form__fieldset-input popup-form__fieldset-input_type_name" name="Имя" type="text">
+                    <label for="name" class="popup-form__label">name</label>
+                    <input id="job" class="popup-form__fieldset-input popup-form__fieldset-input_type_job" name="Описание" type="text">
+                    <label for="job" class="popup-form__label">job</label>
                   </fieldset>
-                  <button class="popup__save" type="submit">Сохранить</button>
+                  <button class="popup-form__save" type="submit">Сохранить</button>
                 </form>
             </div>
         </div>
