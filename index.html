@@ -26,50 +26,7 @@
             <button class="profile__add" type="button"></button>
         </section>
 
-        <section class="elements">
-            <div class="element">
-                <img class="element__image" alt="Карачaевск" src="./images/karachevsk.jpg">
-                <div class="element__buttom">
-                    <h2 class="element__text">Карачаевск</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__image" alt="Карачaевск" src="./images/elbrys.jpg">
-                <div class="element__buttom">
-                    <h2 class="element__text">Гора Эльбрус</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__image" alt="Карачaевск" src="./images/dombai.jpg">
-                <div class="element__buttom">
-                    <h2 class="element__text">Домбай</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__image" alt="Карачaевск" src="./images/elbrys.jpg">
-                <div class="element__buttom">
-                    <h2 class="element__text">Гора Эльбрус</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__image" alt="Карачaевск" src="./images/dombai.jpg">
-                <div class="element__buttom">
-                    <h2 class="element__text">Домбай</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__image" alt="Карачaевск" src="./images/karachevsk.jpg">
-                <div class="element__buttom">
-                    <h2 class="element__text">Карачаево-Черкесская</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </div>
-        </section>
+        <section class="cards"></section>
     </main>
 
     <footer class="footer">
@@ -94,6 +51,43 @@
         </div>
     </div>
 
+    <div class="popupadd">
+        <div class="popupadd__container">
+            <button class="popupadd__close" type="reset"></button>
+            <div class="popupadd__div">
+                <h2 class="popupadd__text">Новое место</h2>
+                <form class="popupadd-form" action="form" method="post">
+                  <fieldset class="popupadd-form__fieldset">
+                    <input id="name" class="popupadd-form__fieldset-input popupadd-form__fieldset-input_type_name" name="Название" type="text" placeholder="Название">
+                    <label for="name" class="popupadd-form__label">name</label>
+                    <input id="job" class="popupadd-form__fieldset-input popupadd-form__fieldset-input_type_link" name="Ссылка" type="text" placeholder="Ссылка на картинку">
+                    <label for="job" class="popupadd-form__label">link</label>
+                  </fieldset>
+                  <button class="popupadd-form__save" type="submit">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-view">
+        <div class="popup-view__container">
+          <button class="popup-view__close" type="reset" aria-label="Закрыть"></button>
+          <img src="#" alt="фото" class="popup-view__image">
+          <h3 class="popup-view__description">Описание</h3>
+        </div>
+    </div>
+
+    <template class="template-card">
+        <div class="card">
+            <button class="card__button-delete" type="button"></button>
+            <img src="#" class="card__image" alt="Картинка">
+            <div class="card__info">
+                <h2 class="card__name"></h2>
+                <button class="card__button-like" type="button"></button>
+            </div>
+        </div>
+    </template>
+    
     <script src="./scripts/script.js"></script>
 </body>
 </html>

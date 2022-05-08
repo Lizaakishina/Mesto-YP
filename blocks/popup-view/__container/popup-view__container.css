@@ -1,0 +1,6 @@
+.popup-view__container{
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+}

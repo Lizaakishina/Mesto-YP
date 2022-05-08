@@ -1,0 +1,9 @@
+.popup-view__description{
+    margin: 0;
+    font-family: 'Inter','Arial',sans-serif;
+    padding-top: 10px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.25;
+    color: #FFFFFF;
+}
