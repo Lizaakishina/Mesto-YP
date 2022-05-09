@@ -28,42 +28,44 @@ const initialCards = [
 const templateCard = document.querySelector('.template-card').content;
 const cards = document.querySelector('.cards');
 
+//переменные профиля
+const editButton = document.querySelector('.profile__edit');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__description');
+
 //для попапа редактирования информации
-let popup = document.querySelector('.popup');
-let editButton = document.querySelector('.profile__edit');
-let closeButton = document.querySelector('.popup__close');
-let formElement = document.querySelector('.popup-form');
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__description');
-let inputName = document.querySelector('.popup-form__fieldset-input_type_name');
-let inputJob = document.querySelector('.popup-form__fieldset-input_type_job');
+const popup = document.querySelector('.popup');
+const closePopupButton = document.querySelector('.popup__close');
+const formElement = document.querySelector('.popup-form');
+const inputName = document.querySelector('.popup-form__fieldset-input_type_name');
+const inputJob = document.querySelector('.popup-form__fieldset-input_type_job');
 
 //для попапа добавления карточек
-let addPopup = document.querySelector('.popupadd');
-let addButton = document.querySelector('.profile__add');
-let addCloseButton = document.querySelector('.popupadd__close');
-let addFormElement = document.querySelector('.popupadd-form');
-let addInputName = document.querySelector('.popupadd-form__fieldset-input_type_name');
-let addInputLink = document.querySelector('.popupadd-form__fieldset-input_type_link');
+const addPopup = document.querySelector('.popupadd');
+const addButton = document.querySelector('.profile__add');
+const addCloseButton = document.querySelector('.popupadd__close');
+const addPopupFormElement = document.querySelector('.popupadd-form');
+const addInputName = document.querySelector('.popupadd-form__fieldset-input_type_name');
+const addInputLink = document.querySelector('.popupadd-form__fieldset-input_type_link');
 
 //для попапа добавления картинки
-let viewPopup = document.querySelector('.popup-view');
-let viewCloseButton = document.querySelector('.popup-view__close');
-let viewImage = document.querySelector('.popup-view__image');
-let viewDescription = document.querySelector('.popup-view__description');
+const viewPopup = document.querySelector('.popup-view');
+const viewCloseButton = document.querySelector('.popup-view__close');
+const viewImage = document.querySelector('.popup-view__image');
+const viewDescription = document.querySelector('.popup-view__description');
 
 //функции, относящиеся к попапу редактирования
-function openPopup(){
+function openPopup() {
     popup.classList.add('popup_opened');
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
 }
 
-function closePopup(){
+function closePopup() {
    popup.classList.remove('popup_opened');
 }
 
-function formSubmitHandler (evt) {
+function profileFormSubmitHandler (evt) {
     evt.preventDefault();
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
@@ -71,20 +73,22 @@ function formSubmitHandler (evt) {
 }
 
 editButton.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
-formElement.addEventListener('submit', formSubmitHandler);
+closePopupButton.addEventListener('click', closePopup);
+formElement.addEventListener('submit', profileFormSubmitHandler);
 
 //функции, относящиеся к попапу добавления карточки
-function openPopupAdd(){
+function openPopupAdd() {
   addPopup.classList.add('popupadd_opened');
 }
 
-function closePopupAdd(){
+function closePopupAdd() {
  addPopup.classList.remove('popupadd_opened');
 }
 
 function formSubmitAddCard (evt) {
   evt.preventDefault();
+  addInputName.value = '';
+  addInputLink.value = '';
   const card = {};
   card.name = addInputName.value;
   card.link = addInputLink.value;
@@ -94,10 +98,10 @@ function formSubmitAddCard (evt) {
 
 addButton.addEventListener('click', openPopupAdd);
 addCloseButton.addEventListener('click', closePopupAdd);
-addFormElement.addEventListener('submit', formSubmitAddCard);
+addPopupFormElement.addEventListener('submit', formSubmitAddCard);
 
 //функции, относящиеся к попапу картинки
-function closePopupView(){
+function closePopupView() {
   viewPopup.classList.remove('popup-view_opened');
 }
 
@@ -112,7 +116,7 @@ viewImage.addEventListener('click', viewImagePopup);
 viewCloseButton.addEventListener('click', closePopupView);
 
 //прочие функции
-function buttonLike(evt) {
+function buttonLikeClick(evt) {
   evt.target.classList.toggle('card__button-like_active');
 };
 
@@ -130,7 +134,7 @@ function createCard(card) {
     cardImage.addEventListener('click', () => viewImagePopup(card));
     cardName.textContent = card.name;
     cardButtonDelete.addEventListener('click', deleteCard);
-    cardButtonLike.addEventListener('click', buttonLike);
+    cardButtonLike.addEventListener('click', buttonLikeClick);
     return cardElement;
 };
 

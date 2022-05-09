@@ -1,13 +1,13 @@
-.popup__button{
-    width: 358px;
-    min-height: 50px;
-    display: flex;
+.popup__button {
+  width: 358px;
+  min-height: 50px;
+  display: flex;
 }
 
 @media screen and (max-width: 768px) {
-    .popup__button{
-        width: 238px;
-        min-height: 46px;
-        margin: 45px auto 25px;
-    }
+  .popup__button {
+    width: 238px;
+    min-height: 46px;
+    margin: 45px auto 25px;
+  }
 }
