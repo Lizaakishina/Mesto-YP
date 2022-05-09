@@ -1,7 +1,0 @@
-.popupadd_opened {
-  display: flex;
-  margin: auto;
-  visibility: visible;
-  opacity: 1;
-  transition: opacity .6s linear;
-}

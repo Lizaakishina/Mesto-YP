@@ -33,47 +33,39 @@
         <p class="footer__text">© 2022 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup_type_edit-profile">
         <div class="popup__container">
-            <button class="popup__close" type="reset"></button>
-            <div class="popup__div">
+            <button class="popup__button-close" type="reset"></button>
+            <form class="popup__form">
                 <h2 class="popup__text">Редактировать профиль</h2>
-                <form class="popup-form">
-                  <fieldset class="popup-form__fieldset">
-                    <input id="name" class="popup-form__fieldset-input popup-form__fieldset-input_type_name" name="Имя" type="text">
-                    <label for="name" class="popup-form__label">name</label>
-                    <input id="job" class="popup-form__fieldset-input popup-form__fieldset-input_type_job" name="Описание" type="text">
-                    <label for="job" class="popup-form__label">job</label>
-                  </fieldset>
-                  <button class="popup-form__save" type="submit">Сохранить</button>
-                </form>
-            </div>
+                <input id="name" class="popup__input popup__input_type_user-name" name="Имя" type="text">
+                <label for="name" class="popup-form__label">name</label>
+                <input id="job" class="popup__input popup__input_type_user-job" name="Описание" type="text">
+                <label for="job" class="popup-form__label">job</label>
+                <button class="popup__button" type="submit">Сохранить</button>
+            </form>
         </div>
     </div>
 
-    <div class="popupadd">
-        <div class="popupadd__container">
-            <button class="popupadd__close" type="reset"></button>
-            <div class="popupadd__div">
-                <h2 class="popupadd__text">Новое место</h2>
-                <form class="popupadd-form">
-                  <fieldset class="popupadd-form__fieldset">
-                    <input class="popupadd-form__fieldset-input popupadd-form__fieldset-input_type_name" name="Название" type="text" placeholder="Название">
-                    <label for="name" class="popupadd-form__label">name</label>
-                    <input class="popupadd-form__fieldset-input popupadd-form__fieldset-input_type_link" name="Ссылка" type="text" placeholder="Ссылка на картинку">
-                    <label for="job" class="popupadd-form__label">link</label>
-                  </fieldset>
-                  <button class="popupadd-form__save" type="submit">Создать</button>
-                </form>
-            </div>
+    <div class="popup popup_type_add-card">
+        <div class="popup__container">
+            <button class="popup__button-close" type="reset"></button>
+            <form class="popup__form">
+                <h2 class="popup__text">Новое место</h2>
+                <input class="popup__input popup__input_type_card-name" name="Название" type="text" placeholder="Название">
+                <label for="name" class="popup-form__label">name</label>
+                <input class="popup__input popup__input_type_card-link" name="Ссылка" type="text" placeholder="Ссылка на картинку">
+                <label for="job" class="popup-form__label">link</label>
+                <button class="popup__button" type="submit">Создать</button>
+            </form>
         </div>
     </div>
 
-    <div class="popup-view">
-        <div class="popup-view__container">
-          <button class="popup-view__close" type="reset" aria-label="Закрыть"></button>
-          <img src="#" alt="фото" class="popup-view__image">
-          <h3 class="popup-view__description">Описание</h3>
+    <div class="popup popup_type_view-image">
+        <div class="popup__container">
+          <button class="popup__button-close" type="reset" aria-label="Закрыть"></button>
+          <img src="#" alt="фото" class="popup__view-image">
+          <h3 class="popup__description">Описание</h3>
         </div>
     </div>
 
