@@ -70,13 +70,13 @@ function viewImagePopup(card) {
   openPopup(popupViewImage);
 };
 
-function buttonEdit() {
+function buttonEditClick() {
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
   openPopup(popupProfile);
 };
 
-function buttonAdd() {
+function buttonAddClick() {
   formAddCard.reset();
   openPopup(popupAddCard);
 };
@@ -92,8 +92,8 @@ const onButtonClosePopupViewImage = () => closePopup(popupViewImage);
 const onButtonClosePopupAddCard = () => closePopup(popupAddCard);
 
 // реакции на кнопки открытия попапов
-profileEditButton.addEventListener('click', buttonEdit);
-profileAddButton.addEventListener('click', buttonAdd);
+profileEditButton.addEventListener('click', buttonEditClick);
+profileAddButton.addEventListener('click', buttonAddClick);
 
 // реакции на кнопки закрытия попапов
 buttonClosePopupProfile.addEventListener('click', onButtonClosePopupProfile);
@@ -108,10 +108,8 @@ function onFormSubmitProfile(evt) {
   closePopup(popupProfile);
 };
 
-function formSubmitAddCard (evt) {
+function onFormSubmitAddCard (evt) {
   evt.preventDefault();
-  addInputName.value = '';
-  addInputLink.value = '';
   const card = {};
   card.name = addInputName.value;
   card.link = addInputLink.value;
@@ -158,6 +156,6 @@ function renderCards(cards) {
 
 // отправка формы
 formProfile.addEventListener('submit', onFormSubmitProfile);
-formAddCard.addEventListener('submit', formSubmitAddCard);
+formAddCard.addEventListener('submit', onFormSubmitAddCard);
 
 renderCards(initialCards);
