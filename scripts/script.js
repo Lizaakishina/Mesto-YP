@@ -54,14 +54,10 @@ const buttonClosePopupViewImage = popupViewImage.querySelector('.popup__button-c
 const viewImage = popupViewImage.querySelector('.popup__view-image');
 const viewDescription = popupViewImage.querySelector('.popup__description');
 
-//функции открытия и закрытия всех попапов
+//функции закрытия попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
+};
 
 function viewImagePopup(card) {
   viewImage.src = card.link;
@@ -81,9 +77,25 @@ function buttonAddClick() {
   openPopup(popupAddCard);
 };
 
+//функции закрытия попапов
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-}
+};
+
+function buttonEscClosePopup(evt) {
+  if (evt.key !== 'Escape') return;
+  const openPopups = Array.from(document.querySelectorAll('.popup_opened'));
+
+  openPopups.forEach(popup => {
+    closePopup(popup);
+  });
+};
+
+function buttonOverlayClosePopup(evt) {
+  const overlayPopup = evt.target;
+  if (!overlayPopup.classList.contains('popup_opened')) return;
+  closePopup(overlayPopup);
+};
 
 const onButtonClosePopupProfile = () => closePopup(popupProfile);
 
@@ -99,6 +111,8 @@ profileAddButton.addEventListener('click', buttonAddClick);
 buttonClosePopupProfile.addEventListener('click', onButtonClosePopupProfile);
 buttonClosePopupAddCard.addEventListener('click', onButtonClosePopupAddCard);
 buttonClosePopupViewImage.addEventListener('click', onButtonClosePopupViewImage);
+document.addEventListener('keydown', buttonEscClosePopup);
+document.addEventListener('click', buttonOverlayClosePopup);
 
 //функции отправки формы
 function onFormSubmitProfile(evt) {
@@ -117,7 +131,7 @@ function onFormSubmitAddCard (evt) {
   closePopup(popupAddCard);
 };
 
-//прочие функции
+//функция лайка
 function buttonLikeClick(evt) {
   evt.target.classList.toggle('card__button-like_active');
 };
