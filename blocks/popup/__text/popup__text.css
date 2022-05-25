@@ -1,6 +1,7 @@
 .popup__text {
   max-width: 100%;
-  margin: 0 0 16px;
+  margin: 0;
+  padding-bottom: 54px;
   align-self: flex-start;
   font-family: 'Inter','Arial',sans-serif;
   font-style: normal;
@@ -14,6 +15,6 @@
   .popup__text {
     font-size: 18px;
     line-height: 22px;
-    margin: 0 0 44px;
+    padding-bottom: 75px;
   }
 }

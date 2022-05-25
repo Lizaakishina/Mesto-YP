@@ -20,9 +20,10 @@ function hideInputError(input, inputTextErrorSelector, inputErrorClass) {
     const inputError = document.querySelector(`${inputTextErrorSelector}_type_${input.id}`);
   
     input.classList.remove(inputErrorClass);
-    inputError.textContent = '';
+    inputError.textContent = ' ';
 };
-  
+
+//функции валидации
 function isValid(input, inputTextErrorSelector, inputErrorClass) {
     if (!input.validity.valid) {
       showInputError(input, inputTextErrorSelector, inputErrorClass);
@@ -36,7 +37,8 @@ function hasInvalidInput(inputList) {
       return !input.validity.valid;
     });
 };
-  
+
+//функция состояния кнопки
 function toggleButtonSubmitState(inputList, buttonSubmit, inactiveButtonClass) {
     if(hasInvalidInput(inputList)) {
       buttonSubmit.classList.add(inactiveButtonClass);
@@ -46,7 +48,7 @@ function toggleButtonSubmitState(inputList, buttonSubmit, inactiveButtonClass) {
       buttonSubmit.disabled = false;
     }
 };
-  
+
 const setEventListeners = (
     form,
     inputSelector,
@@ -67,7 +69,7 @@ const setEventListeners = (
       });
     });
 };
-  
+
 function enableValidation(selectors) {
     const forms = Array.from(document.querySelectorAll(selectors.formSelector));
   
