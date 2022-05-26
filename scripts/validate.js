@@ -1,12 +1,3 @@
-const selectors = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button_type_submit',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    inputTextErrorSelector: '.popup__input-error'
-  };
-
 //функция вывода ошибки
 function showInputError(input, inputTextErrorSelector, inputErrorClass) {
     const inputError = document.querySelector(`${inputTextErrorSelector}_type_${input.id}`);

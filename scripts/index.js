@@ -1,32 +1,5 @@
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];  
-
 const templateCard = document.querySelector('.template-card').content;
-const cards = document.querySelector('.cards');
+const card = document.querySelector('.cards');
 
 //переменные профиля
 const profileEditButton = document.querySelector('.profile__edit');
@@ -47,6 +20,7 @@ const buttonClosePopupAddCard = popupAddCard.querySelector('.popup__button-close
 const formAddCard = popupAddCard.querySelector('.popup__form');
 const addInputName = formAddCard.querySelector('.popup__input_type_card-name');
 const addInputLink = formAddCard.querySelector('.popup__input_type_card-link');
+const addButton = formAddCard.querySelector('.popup__button');
 
 //для попапа добавления картинки
 const popupViewImage = document.querySelector('.popup_type_view-image');
@@ -57,12 +31,15 @@ const viewDescription = popupViewImage.querySelector('.popup__description');
 //функции закрытия попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  disableSaveButton();
+  document.addEventListener('keydown', buttonEscClosePopup);
+  document.addEventListener('click', buttonOverlayClosePopup);
 };
 
-function viewImagePopup(card) {
-  viewImage.src = card.link;
-  viewImage.alt = card.name;
-  viewDescription.textContent = card.name;
+function viewImagePopup(newCard) {
+  viewImage.src = newCard.link;
+  viewImage.alt = newCard.name;
+  viewDescription.textContent = newCard.name;
   openPopup(popupViewImage);
 };
 
@@ -80,6 +57,8 @@ function buttonAddClick() {
 //функции закрытия попапов
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', buttonEscClosePopup);
+  document.removeEventListener('click', buttonOverlayClosePopup);
 };
 
 function buttonEscClosePopup(evt) {
@@ -111,8 +90,6 @@ profileAddButton.addEventListener('click', buttonAddClick);
 buttonClosePopupProfile.addEventListener('click', onButtonClosePopupProfile);
 buttonClosePopupAddCard.addEventListener('click', onButtonClosePopupAddCard);
 buttonClosePopupViewImage.addEventListener('click', onButtonClosePopupViewImage);
-document.addEventListener('keydown', buttonEscClosePopup);
-document.addEventListener('click', buttonOverlayClosePopup);
 
 //функции отправки формы
 function onFormSubmitProfile(evt) {
@@ -124,10 +101,10 @@ function onFormSubmitProfile(evt) {
 
 function onFormSubmitAddCard (evt) {
   evt.preventDefault();
-  const card = {};
-  card.name = addInputName.value;
-  card.link = addInputLink.value;
-  renderCard(card);
+  const newCard = {};
+  newCard.name = addInputName.value;
+  newCard.link = addInputLink.value;
+  renderCard(newCard);
   closePopup(popupAddCard);
 };
 
@@ -136,8 +113,14 @@ function buttonLikeClick(evt) {
   evt.target.classList.toggle('card__button-like_active');
 };
 
+//функция дизейбла кнопки
+function disableSaveButton() {
+  addButton.classList.add('popup__button_disabled');
+  addButton.setAttribute('disabled', 'disabled');
+};
+
 //функции карт
-function createCard(card) {
+function createCard(newCard) {
     //переменные для создания карточек, нужные только в этой функции
     const cardElement = templateCard.querySelector('.card').cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
@@ -145,27 +128,27 @@ function createCard(card) {
     const cardButtonDelete = cardElement.querySelector('.card__button-delete');
     const cardButtonLike = cardElement.querySelector('.card__button-like');
   
-    cardImage.src = card.link;
-    cardImage.alt = card.name;
-    cardImage.addEventListener('click', () => viewImagePopup(card));
-    cardName.textContent = card.name;
+    cardImage.src = newCard.link;
+    cardImage.alt = newCard.name;
+    cardImage.addEventListener('click', () => viewImagePopup(newCard));
+    cardName.textContent = newCard.name;
     cardButtonDelete.addEventListener('click', deleteCard);
     cardButtonLike.addEventListener('click', buttonLikeClick);
     return cardElement;
 };
 
 function deleteCard(evt) {
-  const card = evt.target.closest('.card');
-  card.remove();
+  const newCard = evt.target.closest('.card');
+  newCard.remove();
 };
 
 //функции отображения
-function renderCard(card) {
-  cards.prepend(createCard(card));
+function renderCard(newCard) {
+  card.prepend(createCard(newCard));
 };
 
-function renderCards(cards) {
-  cards.forEach(card => renderCard(card));
+function renderCards(card) {
+  card.forEach(newCard => renderCard(newCard));
 };
 
 // отправка формы
