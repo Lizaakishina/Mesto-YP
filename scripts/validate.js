@@ -1,81 +1,91 @@
 //функция вывода ошибки
 function showInputError(input, inputTextErrorSelector, inputErrorClass) {
-    const inputError = document.querySelector(`${inputTextErrorSelector}_type_${input.id}`);
+  const inputError = document.querySelector(`${inputTextErrorSelector}_type_${input.id}`);
   
-    input.classList.add(inputErrorClass);
-    inputError.textContent = input.validationMessage;
+  input.classList.add(inputErrorClass);
+  inputError.textContent = input.validationMessage;
 };
 
 //функция сокрытия ошибки
 function hideInputError(input, inputTextErrorSelector, inputErrorClass) {
-    const inputError = document.querySelector(`${inputTextErrorSelector}_type_${input.id}`);
+  const inputError = document.querySelector(`${inputTextErrorSelector}_type_${input.id}`);
   
-    input.classList.remove(inputErrorClass);
-    inputError.textContent = ' ';
+  input.classList.remove(inputErrorClass);
+  inputError.textContent = '';
 };
 
 //функции валидации
 function isValid(input, inputTextErrorSelector, inputErrorClass) {
-    if (!input.validity.valid) {
-      showInputError(input, inputTextErrorSelector, inputErrorClass);
-    } else {
-      hideInputError(input, inputTextErrorSelector, inputErrorClass);
-    }
+  if (!input.validity.valid) {
+    showInputError(input, inputTextErrorSelector, inputErrorClass);
+  } else {
+    hideInputError(input, inputTextErrorSelector, inputErrorClass);
+  }
 };
   
 function hasInvalidInput(inputList) {
-    return inputList.some(input => {
-      return !input.validity.valid;
-    });
+  return inputList.some(input => {
+    return !input.validity.valid;
+  });
+};
+
+//функции активации/деактивации кнопки добавления карточки
+function disableSubmitButton(addButton) {
+  if (addButton) {
+    addButton.classList.add('popup__button_disabled');
+    addButton.disabled = true;
+  }
+};
+
+function enableSubmitButton(addButton) {
+  addButton.classList.remove('popup__button_disabled');
+  addButton.disabled = false;
 };
 
 //функция состояния кнопки
-function toggleButtonSubmitState(inputList, buttonSubmit, inactiveButtonClass) {
-    if(hasInvalidInput(inputList)) {
-      buttonSubmit.classList.add(inactiveButtonClass);
-      buttonSubmit.disabled = true;
-    } else {
-      buttonSubmit.classList.remove(inactiveButtonClass);
-      buttonSubmit.disabled = false;
-    }
+function toggleButtonSubmitState(inputList, addButton) {
+  if(hasInvalidInput(inputList)) {
+    disableSubmitButton(addButton);
+  }
+  else {
+    enableSubmitButton(addButton);
+  }
 };
 
 const setEventListeners = (
-    form,
-    inputSelector,
-    submitButtonSelector,
-    inactiveButtonClass,
-    inputErrorClass,
-    inputTextErrorSelector) => {
-    const inputList = Array.from(form.querySelectorAll(inputSelector));
-    const buttonSubmit = form.querySelector(submitButtonSelector);
+  form,
+  inputSelector,
+  submitButtonSelector,
+  inputErrorClass,
+  inputTextErrorSelector) => {
+  const inputList = Array.from(form.querySelectorAll(inputSelector));
+  const addButton = form.querySelector(submitButtonSelector);
   
-    toggleButtonSubmitState(inputList, buttonSubmit, inactiveButtonClass);
+  toggleButtonSubmitState(inputList, addButton);
   
-    inputList.forEach(input => {
-      input.addEventListener('input', () => {
-        isValid(input, inputTextErrorSelector, inputErrorClass);
+  inputList.forEach(input => {
+    input.addEventListener('input', () => {
+      isValid(input, inputTextErrorSelector, inputErrorClass);
   
-        toggleButtonSubmitState(inputList, buttonSubmit, inactiveButtonClass);
-      });
+      toggleButtonSubmitState(inputList, addButton);
     });
+  });
 };
 
 function enableValidation(selectors) {
-    const forms = Array.from(document.querySelectorAll(selectors.formSelector));
+  const forms = Array.from(document.querySelectorAll(selectors.formSelector));
   
-    forms.forEach(form => {
-      form.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-      setEventListeners(
-        form,
-        selectors.inputSelector,
-        selectors.submitButtonSelector,
-        selectors.inactiveButtonClass,
-        selectors.inputErrorClass,
-        selectors.inputTextErrorSelector);
-   });
+  forms.forEach(form => {
+    form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    setEventListeners(
+      form,
+      selectors.inputSelector,
+      selectors.submitButtonSelector,
+      selectors.inputErrorClass,
+      selectors.inputTextErrorSelector);
+  });
 };
   
 enableValidation(selectors);

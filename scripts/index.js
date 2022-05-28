@@ -31,7 +31,6 @@ const viewDescription = popupViewImage.querySelector('.popup__description');
 //функции закрытия попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  disableSaveButton();
   document.addEventListener('keydown', buttonEscClosePopup);
   document.addEventListener('click', buttonOverlayClosePopup);
 };
@@ -51,6 +50,7 @@ function buttonEditClick() {
 
 function buttonAddClick() {
   formAddCard.reset();
+  disableSubmitButton(addButton);
   openPopup(popupAddCard);
 };
 
@@ -111,12 +111,6 @@ function onFormSubmitAddCard (evt) {
 //функция лайка
 function buttonLikeClick(evt) {
   evt.target.classList.toggle('card__button-like_active');
-};
-
-//функция дизейбла кнопки
-function disableSaveButton() {
-  addButton.classList.add('popup__button_disabled');
-  addButton.setAttribute('disabled', 'disabled');
 };
 
 //функции карт
