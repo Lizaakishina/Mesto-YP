@@ -1,13 +1,5 @@
-const selectors = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button_type_submit',
-    inputErrorClass: 'popup__input_type_error',
-    inputTextErrorSelector: '.popup__input-error'
-};
-
 //массив карточек
-const initialCards = [
+export const initialCards = [
     {
       name: 'Архыз',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'

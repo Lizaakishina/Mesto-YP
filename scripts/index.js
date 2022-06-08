@@ -1,5 +1,8 @@
-const templateCard = document.querySelector('.template-card').content;
-const card = document.querySelector('.cards');
+import {initialCards} from './initialCards.js';
+import Card from './Card.js';
+
+//--const templateCard = document.querySelector('.template-card').content;
+const gallery = document.querySelector('.cards');
 
 //переменные профиля
 const profileEditButton = document.querySelector('.profile__edit');
@@ -25,8 +28,8 @@ const addButton = formAddCard.querySelector('.popup__button');
 //для попапа добавления картинки
 const popupViewImage = document.querySelector('.popup_type_view-image');
 const buttonClosePopupViewImage = popupViewImage.querySelector('.popup__button-close');
-const viewImage = popupViewImage.querySelector('.popup__view-image');
-const viewDescription = popupViewImage.querySelector('.popup__description');
+//--const viewImage = popupViewImage.querySelector('.popup__view-image');
+//--const viewDescription = popupViewImage.querySelector('.popup__description');
 
 //функции закрытия попапов
 function openPopup(popup) {
@@ -35,12 +38,12 @@ function openPopup(popup) {
   document.addEventListener('click', buttonOverlayClosePopup);
 };
 
-function viewImagePopup(newCard) {
+/*--function viewImagePopup(newCard) {
   viewImage.src = newCard.link;
   viewImage.alt = newCard.name;
   viewDescription.textContent = newCard.name;
   openPopup(popupViewImage);
-};
+};*/
 
 function buttonEditClick() {
   inputName.value = profileName.textContent;
@@ -101,20 +104,17 @@ function onFormSubmitProfile(evt) {
 
 function onFormSubmitAddCard (evt) {
   evt.preventDefault();
-  const newCard = {};
-  newCard.name = addInputName.value;
-  newCard.link = addInputLink.value;
-  renderCard(newCard);
+  addCard();
   closePopup(popupAddCard);
 };
 
 //функция лайка
-function buttonLikeClick(evt) {
+/*--function buttonLikeClick(evt) {
   evt.target.classList.toggle('card__button-like_active');
-};
+};*/
 
 //функции карт
-function createCard(newCard) {
+/*--function createCard(newCard) {
     //переменные для создания карточек, нужные только в этой функции
     const cardElement = templateCard.querySelector('.card').cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
@@ -134,16 +134,19 @@ function createCard(newCard) {
 function deleteCard(evt) {
   const newCard = evt.target.closest('.card');
   newCard.remove();
-};
+};*/
 
-//функции отображения
-function renderCard(newCard) {
-  card.prepend(createCard(newCard));
-};
+function renderCards(cards) {
+  cards.reverse().forEach((card) => gallery.append(new Card(card, ".template-card").generate()))
+}
 
-function renderCards(card) {
-  card.forEach(newCard => renderCard(newCard));
-};
+function addCard() {
+  const newCard = new Card({
+    name: addInputName.value,
+    link: addInputLink.value,
+  }, ".template-card");
+  gallery.prepend(newCard.generate());
+}
 
 // отправка формы
 formProfile.addEventListener('submit', onFormSubmitProfile);
