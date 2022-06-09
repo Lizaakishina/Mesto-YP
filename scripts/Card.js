@@ -1,82 +1,74 @@
 export default class Card {
-    _popupViewImage = document.querySelector('.popup_type_view-image');
-    _viewImage = this._popupViewImage.querySelector('.popup__view-image');
-    _viewDescription = this._popupViewImage.querySelector('.popup__description');
-    
     constructor (data, selector) {
-        this._data = data;
+        this._name = data.name;
+        this._link = data.link;
         this._selector = selector;
-
-        this._buttonLikeClick = this._buttonLikeClick.bind(this);
-        this._deleteCard = this._deleteCard.bind(this);
-        this._handleEscPress = this._handleEscPress.bind(this);
+        this._popupViewImage = document.querySelector('.popup_type_view-image');
     }
 
     _getElement() {
-        this._element = document
-          .querySelector(this._selector)
-          .content
-          .querySelector('.card')
-          .cloneNode(true);
-      }
-    
-    _handleEscPress(evt) {
-        if (evt.key === 'Escape') {
-          this._closePopup(this._popupViewImage);
-        }
-    };
-    
-    _closePopup(popup) {
-        popup.classList.remove('popup_opened');
-        document.removeEventListener(`keydown`, this._handleEscPress);
+        const cardElement = document
+        .querySelector(this._selector)
+        .content
+        .querySelector('.card')
+        .cloneNode(true);
+
+        return cardElement;
     }
     
-    _openPopup(popup) {
-        popup.classList.add('popup_opened');
-        document.addEventListener(`keydown`, this._handleEscPress);
-    };
+    //лайк карточки
+    _buttonLikeClick = evt => {
+        const buttonLike = evt.target;
     
-    _openShowPhotoPopup({ name, link }) {
-        this._viewImage.src = link;
-        this._viewImage.alt = name;
-        this._viewDescription.textContent = name;
+        if (!buttonLike.classList.contains('card__button-like')) return;
     
+        buttonLike.classList.toggle('card__button-like_active');
+    }
+
+    _openShowPhotoPopup(evt) {
+        const cardImage = evt.target;
+
+        if (!cardImage.classList.contains('card__image')) return;
+
+        const imageElement = this._popupViewImage.querySelector('.popup__view-image');
+        const imageDescription = this._popupViewImage.querySelector('.popup__description');
+
+        imageElement.src = this._link;
+        imageElement.alt = this._name;
+        imageDescription.textContent = this._name;
         this._openPopup(this._popupViewImage);
     }
+
+    //удаление карточки
+    _deleteCard(evt) {
+        const buttonRemoveCard = evt.target;
     
-    // лайк карточки
-    _buttonLikeClick() {
-        this._element.querySelector('.card__button-like').classList.toggle('card__button-like_active');
+        if (!buttonRemoveCard.classList.contains('card__button-delete')) return;
+    
+        const card = buttonRemoveCard.closest('.card');
+        card.remove();
     }
+
+    _openPopup = popup => popup.classList.add('popup_opened');
     
-    // удаление карточки
-    _deleteCard() {
-        this._element.remove();
-    }
-    
-    // слушатели событий
+    //слуаштель событий
     _setEventListeners() {
-        const image = this._element.querySelector('.card__image');
-        image.addEventListener('click', () => this._openShowPhotoPopup(this._data));
-    
-        const like = this._element.querySelector('.card__button-like');
-        like.addEventListener('click', this._buttonLikeClick);
-    
-        const trash = this._element.querySelector('.card__button-delete');
-        trash.addEventListener('click', this._deleteCard);
+        this._cardElement.addEventListener('click', (evt) => this._buttonLikeClick(evt));
+        this._cardElement.addEventListener('click', (evt) => this._deleteCard(evt));
+        this._cardElement.addEventListener('click', (evt) => this._openShowPhotoPopup(evt));
     }
     
     //создание карточки
-    generate() {
-        this._getElement();
+    generateCard() {
+        this._cardElement = this._getElement();
         this._setEventListeners();
-    
-        const image = this._element.querySelector('.card__image');
-        image.alt = this._data.name;
-        image.src = this._data.link;
-    
-        this._element.querySelector('.card__name').textContent = this._data.name;
-    
-        return this._element;
+        const cardImage = this._cardElement.querySelector('.card__image');
+        const cardName = this._cardElement.querySelector('.card__name');
+
+        cardImage.src = this._link;
+        cardImage.alt = this._name;
+        cardName.textContent = this._name;
+
+        return this._cardElement;
     }
 }
