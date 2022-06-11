@@ -18,7 +18,7 @@ export default class FormValidator {
   
     _hideInputError = (input) => {
       const inputError = document.querySelector(`${this._inputTextErrorSelector}_type_${input.id}`);
-  
+      //удаление ошибки валидации
       input.classList.remove(this._inputErrorClass);
       inputError.textContent = '';
     }
@@ -36,7 +36,7 @@ export default class FormValidator {
         return !input.validity.valid;
       });
     }
-  
+
     _toggleButtonSubmitState = () => {
         if(this._hasInvalidInput()) {
           this._buttonSubmit.classList.add(this._inactiveButtonClass);
