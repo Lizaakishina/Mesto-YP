@@ -79,8 +79,6 @@ const initializeFormAddCard = () => {
   formAddCard.reset();
   addInputName.dispatchEvent(new Event('input'));
   addInputLink.dispatchEvent(new Event('input'));
-  addInputName.classList.remove('popup__input_type_error');
-  addInputLink.classList.remove('popup__input_type_error');
   nameCardInputErrorText.textContent = '';
   linkCardInputErrorText.textContent = '';
 };
