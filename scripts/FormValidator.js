@@ -28,6 +28,7 @@ export default class FormValidator {
       this._inputList.forEach((input) => {
         this._hideInputError(input)
       });
+      this._inputTextErrorSelector.textContent = '';
     }
 
     _isValid = (input) => {

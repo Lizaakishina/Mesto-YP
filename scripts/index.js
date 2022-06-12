@@ -79,8 +79,6 @@ const initializeFormAddCard = () => {
   formAddCard.reset();
   addInputName.dispatchEvent(new Event('input'));
   addInputLink.dispatchEvent(new Event('input'));
-  nameCardInputErrorText.textContent = '';
-  linkCardInputErrorText.textContent = '';
 };
 
 const buttonAddClick = () => {
@@ -96,10 +94,7 @@ const buttonClosePopup = evt => {
   }
 
   const popup = buttonClosePopup.closest('.popup');
-
-  if (popup) {
-    popup.classList.remove('popup_opened');
-  }
+  popup.classList.remove('popup_opened');
 };
 
 function onFormSubmitProfile(evt) {
