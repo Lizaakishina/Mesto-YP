@@ -1,14 +1,14 @@
 export default class Card {
-    constructor (data, cardSelector, handleCardClick) {
-        this._name = data.name;
-        this._link = data.link;
+    constructor({ name, link, handleCardClick}, cardSelector) {
+        this._name = name;
+        this._link = link;
         this._handleCardClick = handleCardClick;
         this._cardSelector = cardSelector;
     }
 
     _getElement() {
         const cardElement = document
-        .querySelector(this._selector)
+        .querySelector(this._cardSelector)
         .content
         .querySelector('.card')
         .cloneNode(true);
@@ -20,7 +20,7 @@ export default class Card {
         evt.target.classList.toggle('card__button-like_active');
     }
     
-      _handleButtonRemoveCard = (evt) => {
+    _handleButtonRemoveCard = (evt) => {
         const card = evt.target.closest('.card');
         card.remove();
     }

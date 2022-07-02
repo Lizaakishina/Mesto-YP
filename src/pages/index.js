@@ -74,7 +74,7 @@ const popupEditProfile = new PopupWithForm({
       const userData = userInfo.getUserInfo();
       userNameInput.value = userData.name;
       userJobInput.value = userData.job;
-      formValidators['formEditProfile'].resetValidation();
+      formValidators['formEditProfile'].resetValidationError();
     },
     handleSubmit: evt => {
       evt.preventDefault();
@@ -93,7 +93,7 @@ profileEditButton.addEventListener('click', popupEditProfile.open.bind(popupEdit
 
 const popupAddCard = new PopupWithForm({
     initializeForm: () => {
-      formValidators['formAddCard'].resetValidation();
+      formValidators['formAddCard'].resetValidationError();
     },
     handleSubmit: evt => {
       evt.preventDefault();
