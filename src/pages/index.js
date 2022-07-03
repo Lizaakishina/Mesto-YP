@@ -66,7 +66,7 @@ const cardList = new Section({
   },
   cardListSection
 );
-// рендер карточек
+
 cardList.renderedItems();
 
 const popupEditProfile = new PopupWithForm({
@@ -74,12 +74,12 @@ const popupEditProfile = new PopupWithForm({
       const userData = userInfo.getUserInfo();
       userNameInput.value = userData.name;
       userJobInput.value = userData.job;
-      formValidators['formEditProfile'].resetValidationError();
+      formValidators['formEditProfile'].resetValidation();
     },
     handleSubmit: evt => {
       evt.preventDefault();
 
-      const inputValues = popupEditProfile.getInputValues();
+      const inputValues = popupEditProfile._getInputValues();
       userInfo.setUserInfo(inputValues);
 
       popupEditProfile.close();
@@ -93,12 +93,12 @@ profileEditButton.addEventListener('click', popupEditProfile.open.bind(popupEdit
 
 const popupAddCard = new PopupWithForm({
     initializeForm: () => {
-      formValidators['formAddCard'].resetValidationError();
+      formValidators['formAddCard'].resetValidation();
     },
     handleSubmit: evt => {
       evt.preventDefault();
 
-      const inputValues = popupAddCard.getInputValues();
+      const inputValues = popupAddCard._getInputValues();
       const cardItem = {
         name: inputValues['card-name'],
         link: inputValues['card-link']
