@@ -76,11 +76,19 @@ const popupEditProfile = new PopupWithForm({
       userJobInput.value = userData.job;
       formValidators['formEditProfile'].resetValidation();
     },
+    // при попытке принять в параментр объект getInputValues
+    // возникает та же ошибка, что и в классе PopupWith Form
+    // просто вылетает страница
     handleSubmit: evt => {
       evt.preventDefault();
 
       const inputValues = popupEditProfile._getInputValues();
-      userInfo.setUserInfo(inputValues);
+      //я не понимаю, что вы имете в виду под этой ошибкой
+      //наставники не смогли помочь к сожалению
+      userInfo.setUserInfo({
+        name: inputValues['name'],
+        job: inputValues['job']
+      })
 
       popupEditProfile.close();
     }

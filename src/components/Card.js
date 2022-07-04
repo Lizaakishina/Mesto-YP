@@ -30,18 +30,18 @@ export default class Card {
   
       this._cardElement.querySelector('.card__button-delete').addEventListener('click', (evt) => this._handleButtonRemoveCard(evt));
   
-      this._cardElement.querySelector('.card__image').addEventListener('click', () => this._handleCardClick());
+      this._cardImage.addEventListener('click', () => this._handleCardClick());
     }
   
     generateCard() {
       this._cardElement = this._getTemplate();
+      this._cardImage = this._cardElement.querySelector('.card__image');
+      this._cardName = this._cardElement.querySelector('.card__name');
       this._setEventListeners();
-      const cardImage = this._cardElement.querySelector('.card__image');
-      const cardName = this._cardElement.querySelector('.card__name');
   
-      cardImage.src = this._link;
-      cardImage.alt = this._name;
-      cardName.textContent = this._name;
+      this._cardImage.src = this._link;
+      this._cardImage.alt = this._name;
+      this._cardName.textContent = this._name;
   
       return this._cardElement;
     }
