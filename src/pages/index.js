@@ -72,8 +72,7 @@ cardList.renderedItems();
 const popupEditProfile = new PopupWithForm({
     initializeForm: () => {
       const userData = userInfo.getUserInfo();
-      userNameInput.value = userData.name;
-      userJobInput.value = userData.job;
+      setInputValues(userData);
       formValidators['formEditProfile'].resetValidation();
     },
     // при попытке принять в параментр объект getInputValues
@@ -83,6 +82,7 @@ const popupEditProfile = new PopupWithForm({
       evt.preventDefault();
 
       const inputValues = popupEditProfile._getInputValues();
+
       //я не понимаю, что вы имете в виду под этой ошибкой
       //наставники не смогли помочь к сожалению
       userInfo.setUserInfo({
