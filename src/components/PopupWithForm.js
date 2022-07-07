@@ -18,7 +18,6 @@ export default class PopupWithForm extends Popup {
   }
 
   setInputValues(userData) {
-    console.log('я работаю');
     this._inputList.forEach(input => {
       input.value = userData[input.name];
     });
@@ -26,9 +25,10 @@ export default class PopupWithForm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    //я сделала, как вы написали, но теперь при сохранении изменений
-    // например в имени профиля - вылетает страница
-    this._form.addEventListener('submit', () => this._handleSubmit(this._getInputValues()));
+    this._form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._handleSubmit(this._getInputValues())
+    });
   }
 
   open() {

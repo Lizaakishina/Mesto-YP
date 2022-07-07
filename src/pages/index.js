@@ -75,19 +75,14 @@ const popupEditProfile = new PopupWithForm({
       setInputValues(userData);
       formValidators['formEditProfile'].resetValidation();
     },
-    // при попытке принять в параментр объект getInputValues
-    // возникает та же ошибка, что и в классе PopupWith Form
-    // просто вылетает страница
-    handleSubmit: evt => {
-      evt.preventDefault();
 
-      const inputValues = popupEditProfile._getInputValues();
-
-      //я не понимаю, что вы имете в виду под этой ошибкой
-      //наставники не смогли помочь к сожалению
+    handleSubmit: inputValues => {
+      userInfo.setUserInfo(inputValues);
+      
+      const inputValue = popupEditProfile._getInputValues();
       userInfo.setUserInfo({
-        name: inputValues['name'],
-        job: inputValues['job']
+        name: inputValue['name'],
+        job: inputValue['job']
       })
 
       popupEditProfile.close();
@@ -97,19 +92,25 @@ const popupEditProfile = new PopupWithForm({
 );
 
 popupEditProfile.setEventListeners();
-profileEditButton.addEventListener('click', popupEditProfile.open.bind(popupEditProfile));
+profileEditButton.addEventListener('click', () => {
+  const userData = userInfo.getUserInfo();
+  popupEditProfile.setInputValues(userData);
+  formValidators['formEditProfile'].resetValidation();
+  popupEditProfile.open();
+});
 
 const popupAddCard = new PopupWithForm({
     initializeForm: () => {
       formValidators['formAddCard'].resetValidation();
     },
-    handleSubmit: evt => {
-      evt.preventDefault();
-
-      const inputValues = popupAddCard._getInputValues();
+    handleSubmit: inputValues => {
+      userInfo.setUserInfo(inputValues);
+      // спасибо вам за подробное объяснение!
+      // нет пределу совершенства =)
+      const inputValue = popupAddCard._getInputValues();
       const cardItem = {
-        name: inputValues['card-name'],
-        link: inputValues['card-link']
+        name: inputValue['card-name'],
+        link: inputValue['card-link']
       };
 
       const cardElement = createCard(cardItem);
