@@ -70,21 +70,8 @@ const cardList = new Section({
 cardList.renderedItems();
 
 const popupEditProfile = new PopupWithForm({
-    initializeForm: () => {
-      const userData = userInfo.getUserInfo();
-      setInputValues(userData);
-      formValidators['formEditProfile'].resetValidation();
-    },
-
     handleSubmit: inputValues => {
       userInfo.setUserInfo(inputValues);
-      
-      const inputValue = popupEditProfile._getInputValues();
-      userInfo.setUserInfo({
-        name: inputValue['name'],
-        job: inputValue['job']
-      })
-
       popupEditProfile.close();
     }
   },
@@ -105,8 +92,6 @@ const popupAddCard = new PopupWithForm({
     },
     handleSubmit: inputValues => {
       userInfo.setUserInfo(inputValues);
-      // спасибо вам за подробное объяснение!
-      // нет пределу совершенства =)
       const inputValue = popupAddCard._getInputValues();
       const cardItem = {
         name: inputValue['card-name'],
@@ -121,4 +106,7 @@ const popupAddCard = new PopupWithForm({
   popupAddCardSelector,
 );
 popupAddCard.setEventListeners();
-profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));
+profileAddButton.addEventListener('click', () => {
+  formValidators['formAddCard'].resetValidation();
+  popupAddCard.open();
+});
