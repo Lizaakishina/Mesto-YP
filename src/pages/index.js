@@ -1,9 +1,11 @@
 import './index.css';
+
 import {
-  initialCards,
   formSelectors,
+  apiConfig,
   userNameSelector,
   userJobSelector,
+  userAvatarSelector,
   userNameInput,
   userJobInput,
   profileEditButton,
@@ -12,9 +14,10 @@ import {
   cardTemplateSelector,
   popupViewImageSelector,
   popupEditProfileSelector,
-  popupAddCardSelector
+  popupAddCardSelector,
 } from '../utils/constants.js';
 
+import Api from '../components/Api';
 import UserInfo from '../components/UserInfo.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -22,6 +25,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 
+const api = new Api(apiConfig);
 const formValidators = {};
 
 const enableValidationForms = () => {
@@ -38,16 +42,32 @@ enableValidationForms();
 
 const userInfo = new UserInfo({
   nameSelector: userNameSelector,
-  jobSelector: userJobSelector
+  jobSelector: userJobSelector,
+  avatarSelector: userAvatarSelector
 });
+
+api.getUser()
+  .then(data => {
+    userInfo.initialize(data);
+  }
+);
+
+//коллбек удаления карточки
+const removeCard = (id) => {
+  api.removeCard(id);
+};
 
 const popupWithImage = new PopupWithImage(popupViewImageSelector);
 popupWithImage.setEventListeners();
 
-const createCard = ({ name, link}) => {
+const createCard = ({ name, link, likes, _id, owner}) => {
   const card = new Card({
     name,
     link,
+    likes,
+    _id,
+    owner,
+    removeCard,
     handleCardClick: () => {
         popupWithImage.open({ name, link});
     }
@@ -58,7 +78,7 @@ const createCard = ({ name, link}) => {
 };
 
 const cardList = new Section({
-    items: initialCards,
+    items: null,
     renderer: (cardItem) => {
       const cardElement = createCard(cardItem);
       cardList.addItem(cardElement);
@@ -67,12 +87,32 @@ const cardList = new Section({
   cardListSection
 );
 
-cardList.renderedItems();
+// получим данные карточек из сервера
+api.getInitialCards()
+  .then(res => {
+    const dataCards = res.map(data => {
+      return {
+        name: data.name,
+        link: data.link,
+        likes: data.likes,
+        _id: data._id,
+        owner: data.owner._id === userInfo.getUserId()
+      }
+    });
+    // передадим массив данных
+    cardList.setInitialArray(dataCards);
+    // и сделаем рендер карточек
+    cardList.renderedItems();
+  }
+);
 
 const popupEditProfile = new PopupWithForm({
     handleSubmit: inputValues => {
-      userInfo.setUserInfo(inputValues);
-      popupEditProfile.close();
+      api.setUser({name: inputValues.name, about: inputValues.job})
+        .then(res => {
+          userInfo.setUserInfo(inputValues);
+          popupEditProfile.close();
+        })
     }
   },
   popupEditProfileSelector
@@ -91,16 +131,26 @@ const popupAddCard = new PopupWithForm({
       formValidators['formAddCard'].resetValidation();
     },
     handleSubmit: inputValues => {
-      userInfo.setUserInfo(inputValues);
+      api.setUser({name: inputValues.name, about: inputValues.job})
+        .then(res => {
+          userInfo.setUserInfo(inputValues);
+      });
       const inputValue = popupAddCard._getInputValues();
       const cardItem = {
         name: inputValue['card-name'],
-        link: inputValue['card-link']
+        link: inputValues['card-link'],
+        likes: [],
+        owner: true
       };
 
-      const cardElement = createCard(cardItem);
-      cardList.addItem(cardElement);
-      popupAddCard.close();
+      api.createCard(cardItem)
+        .then(res => {
+          cardItem._id = res._id;
+          const cardElement = createCard(cardItem);
+          cardList.addItem(cardElement);
+          popupAddCard.close();
+        }
+      );
     }
   },
   popupAddCardSelector,

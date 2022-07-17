@@ -1,8 +1,12 @@
 export default class Card {
-    constructor({ name, link, handleCardClick}, cardSelector) {
+    constructor({ name, link, likes = [], _id, owner = false, handleCardClick, removeCard}, cardSelector) {
       this._name = name;
       this._link = link;
+      this._likes = likes;
+      this._id = _id;
+      this._owner = owner;
       this._handleCardClick = handleCardClick;
+      this._removeCard = removeCard.bind(this);
       this._cardSelector = cardSelector;
     }
   
@@ -21,8 +25,9 @@ export default class Card {
     }
   
     _handleButtonRemoveCard = () => {
-      this._cardElement.remove();
-      this._cardElement = null;
+      this._removeCard(this._id);
+      const card = evt.target.closest('.card');
+      card.remove();
     }
   
     _setEventListeners() {
@@ -37,12 +42,19 @@ export default class Card {
       this._cardElement = this._getTemplate();
       this._cardImage = this._cardElement.querySelector('.card__image');
       this._cardName = this._cardElement.querySelector('.card__name');
+      this._cardLikes = this._cardElement.querySelector('.card__count-like');
+      this._cardButtonRemove = this._cardElement.querySelector('.card__button-delete');
       this._setEventListeners();
   
       this._cardImage.src = this._link;
       this._cardImage.alt = this._name;
       this._cardName.textContent = this._name;
+      this._cardLikes.textContent = this._likes.length;
   
+      if(!this._owner) {
+        cardButtonRemove.remove();
+      }
+
       return this._cardElement;
     }
   }

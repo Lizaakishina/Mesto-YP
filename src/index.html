@@ -32,6 +32,16 @@
         <p class="footer__text">© 2022 Mesto Russia</p>
     </footer>
 
+    <!--<div class="popup popup_type_edit-avatar">
+        <button type="button" class="popup__button-close"></button>
+        <form class="popup__form" method="post" novalidate>
+            <p class="popup__text">Обновить аватар</p>
+            <input type="url" name="avatar" id="avatar" class="popup__input" placeholder="Ссылка на картинку" required>
+            <span class="popup__input-error"></span>
+            <button type="submit" class="popup__button popup__button_type_submit">Сохранить</button>
+        </form>
+    </div><!-->
+
     <div class="popup popup_type_edit-profile">
         <div class="popup__container">
             <button class="popup__button-close" type="reset"></button>
@@ -74,7 +84,10 @@
             <img src="#" class="card__image" alt="Картинка">
             <div class="card__info">
                 <h2 class="card__name"></h2>
-                <button class="card__button-like" type="button"></button>
+                <div class="card__container-like">
+                    <button class="card__button-like" type="button" aria-label="Лайк"></button>
+                    <p class="card__count-like"></p>
+                </div>
             </div>
         </div>
     </template>
