@@ -1,16 +1,15 @@
 .profile__add {
-  background-size: 22px 22px;
-  background-repeat: no-repeat;
-  background-image: url(../../../images/Vector.svg);
-  background-color: rgba(0, 0, 0, 0);
-  background-position: center;
-  cursor: pointer;
-  border-radius: 2px;
-  border: 2px solid #FFFFFF;
   height: 50px;
   width: 150px;
   padding: 0;
-  align-self: center;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  background-image: url(../../../images/Vector.svg);
+  background-color: transparent;
+  background-position: center;
+  cursor: pointer;
 }
 
 .profile__add:hover {
@@ -21,6 +20,5 @@
   .profile__add {
     background-size: 16px 16px;
     width: 282px;
-    margin-top: 36px;
   }
 }

@@ -1,9 +1,11 @@
 export default class UserInfo {
-  constructor({ nameSelector, jobSelector, avatarSelector }) {
+  constructor({ nameSelector, jobSelector, avatarSelector, handleAvatarClick }) {
       this._name = document.querySelector(nameSelector);
       this._job = document.querySelector(jobSelector);
       this._avatar = document.querySelector(avatarSelector);
+      this._avatarContainer = this._avatar.parentNode;
       this._id = '';
+      this._handleAvatarClick = handleAvatarClick;
     }
 
     initialize({name, about, avatar, _id}) {
@@ -15,6 +17,14 @@ export default class UserInfo {
   
     getUserId() {
       return this._id;
+    }
+
+    setEventListeners() {
+      this._avatarContainer.addEventListener('click', this._handleAvatarClick);
+    }
+
+    updateAvatar(link) {
+      this._avatar.src = link;
     }
 
     getUserInfo() {

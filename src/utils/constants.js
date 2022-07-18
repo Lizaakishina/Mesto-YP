@@ -1,30 +1,3 @@
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 export const formSelectors = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button_type_submit',
@@ -36,14 +9,14 @@ export const formSelectors = {
 export const apiConfig = {
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-45',
   headers: {
-    authorization: 'b37c4061-07ee-4c8e-af47-35d22a87fc06',
+    authorization: '9f035f9d-294c-4946-a452-491eae47ef35',
     'Content-Type': 'application/json'
   }
 };
 
 export const userNameSelector = '.profile__name';
 export const userJobSelector = '.profile__description';
-export const userAvatarSelector = '.profile__avatar';
+export const userAvatarSelector = '.profile__avatar-image';
 export const profileEditButton = document.querySelector('.profile__edit');
 export const profileAddButton = document.querySelector('.profile__add');
 export const userNameInput = document.querySelector(".popup__input_type_user-name");
@@ -60,3 +33,5 @@ export const viewImageDescriptionSelector = '.popup__description';
 export const popupViewImageSelector = '.popup_type_view-image';
 export const popupEditProfileSelector = '.popup_type_edit-profile';
 export const popupAddCardSelector = '.popup_type_add-card';
+export const popupConfirmSelector = '.popup_type_confirm';
+export const popupUpdateAvatarSelector = '.popup_type_update-avatar';
