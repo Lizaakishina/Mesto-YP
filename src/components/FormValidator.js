@@ -10,14 +10,12 @@ export default class  FormValidator {
 
   _showInputError = (input) => {
     const inputError = document.querySelector(`${this._inputTextErrorSelector}_type_${input.id}`);
-
     input.classList.add(this._inputErrorClass);
     inputError.textContent = input.validationMessage;
   }
 
   _hideInputError = (input) => {
     const inputError = document.querySelector(`${this._inputTextErrorSelector}_type_${input.id}`);
-
     input.classList.remove(this._inputErrorClass);
     inputError.textContent = '';
   }
@@ -52,7 +50,6 @@ export default class  FormValidator {
     this._inputList.forEach(input => {
       input.addEventListener('input', () => {
         this._isValid(input);
-
         this._toggleButtonSubmitState();
       });
     });
@@ -62,7 +59,6 @@ export default class  FormValidator {
     this._inputList.forEach(input => {
       this._hideInputError(input);
     });
-
     this._toggleButtonSubmitState();
   }
 

@@ -26,12 +26,10 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  // введем другой текст кнопке отправки
   setTextButtonSubmit(text) {
     this._buttonSubmit.textContent = text;
   }
 
-  // передадим другой хендл сабмита
   setHandleSubmit(handleSubmit) {
     this._handleSubmit = handleSubmit;
   }
@@ -45,7 +43,6 @@ export default class PopupWithForm extends Popup {
   }
 
   open() {
-    // вернем по умолчанию текст кнопки сабмита
     this._buttonSubmit.textContent = this._buttonSubmitTextDefault;
     super.open();
   }
@@ -54,4 +51,4 @@ export default class PopupWithForm extends Popup {
     super.close();
     this._form.reset();
   }
-};
+}
