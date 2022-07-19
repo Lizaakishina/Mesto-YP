@@ -2,7 +2,6 @@ import Popup from "./Popup.js";
 
 export default class PopupConfirm extends Popup {
   constructor({handleConfirm}, popupSelector) {
-    console.log(popupSelector);
     super(popupSelector);
     this._buttonConfirm = this._popup.querySelector('.popup__button_type_submit');
     this._buttonConfirmTextDefault = this._buttonConfirm.textContent;
