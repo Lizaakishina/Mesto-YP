@@ -15,15 +15,9 @@ export default class PopupWithForm extends Popup {
   getInputValues() {
     const inputValues = {};
     this._inputList.forEach(item => {
-      inputValues[item.name] = item.value;
-    });
+        inputValues[item.name] = item.value;
+      });
     return inputValues;
-  }
-
-  setInputValues(userData) {
-    this._inputList.forEach(input => {
-      input.value = userData[input.name];
-    });
   }
 
   setTextButton(text) {
@@ -40,6 +34,7 @@ export default class PopupWithForm extends Popup {
   }
 
   open() {
+    this._initializeForm();
     super.open();
   }
 
