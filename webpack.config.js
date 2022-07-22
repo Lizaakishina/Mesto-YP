@@ -11,32 +11,26 @@ module.exports = {
         publicPath: ''
   },
   devtool: "source-map",
-  mode: 'development', // добавили режим разработчика
+  mode: 'development',
   devServer: {
-    static: path.resolve(__dirname, './dist'), // путь, куда "смотрит" режим разработчика
-    compress: true, // это ускорит загрузку в режиме разработки
-    port: 8080, // порт, чтобы открывать сайт по адресу localhost:8080, но можно поменять порт
+    static: path.resolve(__dirname, './dist'),
+    compress: true,
+    port: 8080,
 
-    open: true // сайт будет открываться сам при запуске npm run dev
+    open: true
   },
   module: {
-    rules: [ // rules — это массив правил
-      // добавим в него объект правил для бабеля
+    rules: [ 
       {
-        // регулярное выражение, которое ищет все js файлы
         test: /\.js$/,
-        // при обработке этих файлов нужно использовать babel-loader
         use: 'babel-loader',
-        // исключает папку node_modules, файлы в ней обрабатывать не нужно
         exclude: '/node_modules/'
       },
       {
         test: /\.html$/,
         use: ['html-loader'],
       },
-        // добавили правило для обработки файлов
       {
-        // регулярное выражение, которое ищет все файлы с такими расширениями
         test: /\.(png|svg|jpg|gif)$/,
         type: 'asset/resource',
         generator: {
@@ -44,7 +38,6 @@ module.exports = {
         }
       },
       {
-        // регулярное выражение, которое ищет все файлы с такими расширениями
         test: /\.(woff(2)?|eot|ttf|otf)$/,
         type: 'asset/resource',
         generator: {
@@ -52,10 +45,7 @@ module.exports = {
         }
       },
       {
-        // применять это правило только к CSS-файлам
         test: /\.css$/,
-        // при обработке этих файлов нужно использовать
-        // MiniCssExtractPlugin.loader и css-loader
         use: [MiniCssExtractPlugin.loader, {
           loader: 'css-loader',
           options: { importLoaders: 1 }
@@ -66,7 +56,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html' // путь к файлу index.html
+      template: './src/index.html' 
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin()

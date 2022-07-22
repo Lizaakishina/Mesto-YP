@@ -59,9 +59,10 @@ const popupUpdateAvatar = new PopupWithForm({
 
     const avatarLink = popupUpdateAvatar.getInputValues()
       .avatar;
-    popupUpdateAvatar.setTextButton('Сохранение...');
     api.updateAvatar(avatarLink)
       .then(res => {
+        popupUpdateAvatar.setTextButton('Сохранение...');
+
         userInfo.updateAvatar(res.avatar);
         popupUpdateAvatar.close();
       })
@@ -71,8 +72,8 @@ const popupUpdateAvatar = new PopupWithForm({
       .finally(() => {
         popupUpdateAvatar.resetTextButton();
       });
-    }
-  },
+  }
+},
   popupUpdateAvatarSelector
 )
 
@@ -92,7 +93,7 @@ const popupConfirm = new PopupConfirm({
   }
 },
   popupConfirmSelector
-);
+)
 
 popupConfirm.setEventListeners();
 
@@ -108,7 +109,8 @@ const createCard = ({ name, link, likes, _id, owner}) => {
     owner,
     userId: userInfo.getUserId(),
     handleButtonLike: () => {
-      const stateLike = card.getLikes().find(owner => owner._id === userInfo._id);
+      const stateLike = card.getLikes()
+        .find(owner => owner._id === userInfo._id);
 
       if(!stateLike) {
         api.setLike(card.getId())
@@ -129,14 +131,14 @@ const createCard = ({ name, link, likes, _id, owner}) => {
       }
     },
     handleCardClick: () => {
-      popupWithImage.open({ name, link});
+        popupWithImage.open({ name, link});
     },
     handleRemoveCardClick : () => {
       popupConfirm.open(card);
     }
   }, cardTemplateSelector);
   const cardElement = card.generateCard();
-
+  
   return cardElement;
 }
 
@@ -159,79 +161,76 @@ Promise.all([api.getUser(), api.getInitialCards()])
         link: data.link,
         likes: data.likes,
         _id: data._id,
-        owner: data.owner._id === userInfo.getUserId()
+        owner: data.owner
       }
     });
-    cardList.setInitialArray(dataCards);
+    const dataCardsReversed = dataCards.reverse();
+    cardList.setInitialArray(dataCardsReversed);
     cardList.renderedItems();
   })
   .catch(err => {
     console.log(err);
-  }
-)
+  })
 
 const popupEditProfile = new PopupWithForm({
-  initializeForm: () => {
-    const userData = userInfo.getUserInfo();
-    userNameInput.value = userData.name;
-    userJobInput.value = userData.job;
-    formValidators['formEditProfile'].resetValidation();
+    initializeForm: () => {
+      const userData = userInfo.getUserInfo();
+      userNameInput.value = userData.name;
+      userJobInput.value = userData.job;
+      formValidators['formEditProfile'].resetValidation();
+    },
+    handleSubmit: evt => {
+      evt.preventDefault();
+      popupEditProfile.setTextButton('Сохранение...');
+      const inputValues = popupEditProfile.getInputValues();
+      api.setUser({name: inputValues.name, about: inputValues.job})
+        .then(res => {
+          userInfo.setUserInfo(inputValues);
+          popupEditProfile.close();
+        }
+      )
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupEditProfile.resetTextButton();
+      });
+    }
   },
-  handleSubmit: evt => {
-    evt.preventDefault();
-    popupEditProfile.setTextButton('Сохранение...');
-    const inputValues = popupEditProfile.getInputValues();
-    api.setUser({name: inputValues.name, about: inputValues.job})
-      .then(res => {
-        userInfo.setUserInfo(inputValues);
-        popupEditProfile.close();
-      }
-    )
-    .catch(err => {
-      console.log(err);
-    })
-    .finally(() => {
-      popupEditProfile.resetTextButton();
-    });
-  }
-},
-popupEditProfileSelector
-);
+  popupEditProfileSelector
+)
 
 popupEditProfile.setEventListeners();
 profileEditButton.addEventListener('click', popupEditProfile.open.bind(popupEditProfile));
 
 const popupAddCard = new PopupWithForm({
-  initializeForm: () => {
-    formValidators['formAddCard'].resetValidation();
-  },
-  handleSubmit: evt => {
-    evt.preventDefault();
-    popupAddCard.setTextButton('Сохранение...');
-    const inputValues = popupAddCard.getInputValues();
-    const cardItem = {
-      name: inputValues['card-name'],
-      link: inputValues['card-link']
-    };
+    initializeForm: () => {
+      formValidators['formAddCard'].resetValidation();
+    },
+    handleSubmit: evt => {
+      evt.preventDefault();
+      popupAddCard.setTextButton('Сохранение...');
+      const inputValues = popupAddCard.getInputValues();
+      const cardItem = {
+        name: inputValues['card-name'],
+        link: inputValues['card-link']
+      };
 
-    api.createCard(cardItem)
-      .then(res => {
-        cardItem._id = res._id;
-        cardItem.owner = res.owner;
-        cardItem.likes = res.likes;
-        const cardElement = createCard(cardItem);
-        cardList.addItem(cardElement);
-        popupAddCard.close();
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      .finally(() => {
-        popupAddCard.resetTextButton();
-      });
-  }
+      api.createCard(cardItem)
+        .then(res => {
+          const cardElement = createCard(res);
+          cardList.addItem(cardElement);
+          popupAddCard.close();
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .finally(() => {
+          popupAddCard.resetTextButton();
+        });
+    }
   },
   popupAddCardSelector,
-);
+)
 popupAddCard.setEventListeners();
 profileAddButton.addEventListener('click', popupAddCard.open.bind(popupAddCard));

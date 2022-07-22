@@ -4,7 +4,7 @@ export default class Api {
     this._headers = headers;
   }
 
-  _checkRes(res) {
+  _checkResponse(res) {
     if(res.ok) {
       return res.json();
     }
@@ -16,7 +16,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-    .then(this._checkRes);
+    .then(this._checkResponse);
   }
 
   setUser({name, about}) {
@@ -28,14 +28,14 @@ export default class Api {
         about: about
       })
     })
-    .then(this._checkRes);
+    .then(this._checkResponse);
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-    .then(this._checkRes);
+    .then(this._checkResponse);
   }
 
   createCard({name, link}) {
@@ -47,7 +47,7 @@ export default class Api {
         link: link
       })
     })
-    .then(this._checkRes);
+    .then(this._checkResponse);
   }
 
   removeCard(idCard) {
@@ -55,7 +55,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(this._checkRes);
+    .then(this._checkResponse);
   }
 
   setLike(idCard) {
@@ -63,7 +63,7 @@ export default class Api {
       method: 'PUT',
       headers: this._headers
     })
-    .then(this._checkRes);
+    .then(this._checkResponse);
   }
 
   removeLike(idCard) {
@@ -71,7 +71,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(this._checkRes);
+    .then(this._checkResponse);
   }
 
   updateAvatar(avatar) {
@@ -82,6 +82,6 @@ export default class Api {
         avatar: avatar
       })
     })
-    .then(this._checkRes);
+    .then(this._checkResponse);
   }
 }
