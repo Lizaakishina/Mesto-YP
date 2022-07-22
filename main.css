@@ -37,8 +37,8 @@
 .card__button-like{background-color:transparent;background-image:url(images/like.87ed371465c7a6a1cd01.svg);background-repeat:no-repeat;background-size:cover;border:0;cursor:pointer;height:19px;margin-bottom:3px;padding:0;transition:opacity .6s;width:22px}.card__button-like:hover{opacity:.5}
 .card__button-like_active{background-image:url(images/LikeActive.fe17a515669479b1e649.svg)}
 .card__count-like{color:#000;font-size:13px;font-weight:400;line-height:1.23;margin:0;text-align:center}
-.footer{align-items:center;box-sizing:border-box;display:flex;justify-content:space-between;margin-left:300px;max-width:100%;padding:67px 0 60px}@media screen and (max-width:768px){.footer{margin-left:36px;max-width:282px;padding:48px 19px 36px}}
-.footer__text{color:#545454;font-family:Inter,Arial,sans-serif;font-size:18px;font-style:normal;font-weight:400;line-height:22px;margin:0}@media screen and (max-width:768px){.footer__text{font-size:14px;line-height:17px;max-width:282px}}
+.footer{align-items:center;box-sizing:border-box;display:flex;justify-content:space-between;margin:0 auto;max-width:880px;padding:67px 0 60px}@media screen and (max-width:768px){.footer{max-width:282px;padding:48px 0 36px}}
+.footer__text{color:#545454;font-family:Inter,Arial,sans-serif;font-size:18px;font-style:normal;font-weight:400;line-height:22px}@media screen and (max-width:768px){.footer__text{font-size:14px;line-height:17px;max-width:282px}}
 
 
 /*# sourceMappingURL=main.css.map*/
