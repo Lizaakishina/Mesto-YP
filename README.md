@@ -26,4 +26,4 @@
 
 ## Где посмотреть?
 
-А вот тут: https://lizaakishina.github.io/Mesto-YP
+А вот тут: https://lizaakishina.github.io/Mesto-YP/
